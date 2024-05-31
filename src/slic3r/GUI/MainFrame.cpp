@@ -1321,6 +1321,12 @@ void MainFrame::init_menubar_as_editor()
 
         fileMenu->AppendSeparator();
 
+            append_menu_item(fileMenu, wxID_ANY, _L("&Slice for Binder Jetting") + dots + "\tCtrl+Shift+B", _L("Export current plater for binder jet printers"),
+            [this](wxCommandEvent&) { save_project(); }, "re_slice", nullptr,
+            [this](){return m_plater != nullptr; }, this);
+
+        fileMenu->AppendSeparator();
+
         wxMenu* import_menu = new wxMenu();
         append_menu_item(import_menu, wxID_ANY, _L("Import STL/3MF/STEP/OBJ/AM&F") + dots + "\tCtrl+I", _L("Load a model"),
             [this](wxCommandEvent&) { if (m_plater) m_plater->add_model(); }, "import_plater", nullptr,
